@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> /?/?/?/? | Te Amo ❤️</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==================== ESTILOS BASE & VARIÁVEIS ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #ff8fa3;
+            --secondary-pink: #ffb3c1;
+            --deep-rose: #c9184a;
+            --soft-red: #ff4d6d;
+            --cream-bg: #fff0f3;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.85);
+            --text-dark: #590d22;
+            --text-muted: #800f2f;
+            --shadow-soft: 0 10px 30px rgba(255, 77, 109, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 50%, #ffb3c1 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        /* ==================== TELA DE ENTRADA (ENTRY OVERLAY) ==================== */
+        #entry-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 5, 12, 0.94);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        #entry-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .entry-text {
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: lowercase;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            animation: pulseGlowText 2s infinite ease-in-out;
+            z-index: 2;
+        }
+
+        @keyframes pulseGlowText {
+            0%, 100% { opacity: 0.6; transform: scale(1); text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); }
+            50% { opacity: 1; transform: scale(1.05); text-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 143, 163, 0.6); }
+        }
+
+        .star-particle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            pointer-events: none;
+            animation: floatStar 4s infinite ease-in-out;
+        }
+
+        @keyframes floatStar {
+            0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.3; }
+            50% { transform: translateY(-15px) scale(1.2); opacity: 0.9; }
+        }
+
+        /* Container de corações flutuantes no fundo */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(255, 77, 109, 0.6);
+            user-select: none;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.85;
+            }
+            85% {
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Player de Música Estilizado */
+        .music-player {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 12px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px auto 30px auto;
+            max-width: 480px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+
+        .music-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .music-icon-btn {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--soft-red), var(--deep-rose));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(201, 24, 74, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .music-icon-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-icon-btn.playing {
+            animation: spin 6s linear infinite;
+        }
+
+        .music-text h4 {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .music-text p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* Header e Título Principal */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .couple-names-header {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.2rem;
+            color: var(--deep-rose);
+            text-shadow: 2px 2px 8px rgba(255, 143, 163, 0.3);
+            line-height: 1.1;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .pulsing-heart {
+            color: var(--soft-red);
+            display: inline-block;
+            animation: heartPulse 1.2s infinite ease-in-out;
+            font-size: 3.2rem;
+        }
+
+        @keyframes heartPulse {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.25); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.25); }
+            70% { transform: scale(1); }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(255, 77, 109, 0.22);
+        }
+
+        /* Seção do Contador */
+        .counter-section {
+            text-align: center;
+        }
+
+        .counter-title {
+            font-size: 1.35rem;
+            color: var(--text-dark);
+            margin-bottom: 22px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .counter-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 16px 8px;
+            border-radius: 20px;
+            border: 1.5px solid var(--secondary-pink);
+            box-shadow: 0 4px 15px rgba(255, 143, 163, 0.1);
+        }
+
+        .counter-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--deep-rose);
+            display: block;
+            line-height: 1;
+        }
+
+        .counter-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 6px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .start-date {
+            margin-top: 22px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Seção "Nossa História & Por Que Eu Te Amo" */
+        .section-heading {
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--deep-rose);
+            margin-bottom: 30px;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 22px;
+            margin-bottom: 40px;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 24px;
+            padding: 28px;
+            border-left: 6px solid var(--soft-red);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: #ffffff;
+            box-shadow: 0 15px 30px rgba(255, 77, 109, 0.25);
+        }
+
+        .story-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--cream-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--soft-red);
+            margin-bottom: 16px;
+            border: 1px solid var(--secondary-pink);
+        }
+
+        .story-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .story-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Galeria Polaroid */
+        .polaroid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .polaroid-card {
+            background: white;
+            padding: 15px 15px 25px 15px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .polaroid-card:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .polaroid-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 15px 30px rgba(201, 24, 74, 0.25);
+            z-index: 5;
+        }
+
+        .polaroid-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 4px;
+            background-color: var(--cream-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .polaroid-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .polaroid-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .polaroid-caption {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* Seção Carta de Amor com Botão Chamativo */
+        .letter-section {
+            text-align: center;
+        }
+
+        .envelope-btn {
+            background: linear-gradient(135deg, var(--soft-red) 0%, var(--deep-rose) 100%);
+            color: white;
+            border: none;
+            padding: 18px 42px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(201, 24, 74, 0.35);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.6); }
+            70% { box-shadow: 0 0 0 18px rgba(255, 77, 109, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0); }
+        }
+
+        .envelope-btn:hover {
+            transform: scale(1.06);
+            background: linear-gradient(135deg, var(--deep-rose) 0%, var(--soft-red) 100%);
+        }
+
+        /* Modal da Carta */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(89, 13, 34, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: 28px;
+            max-width: 650px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(0.8) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px dashed var(--secondary-pink);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--cream-bg);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: var(--deep-rose);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-modal-btn:hover {
+            background: var(--secondary-pink);
+        }
+
+        .letter-header {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: var(--deep-rose);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .letter-body {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .letter-body p {
+            margin-bottom: 15px;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 30px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.3rem;
+            color: var(--deep-rose);
+        }
+
+        /* Modal para Zoom de Foto */
+        .photo-modal-img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 12px;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px 20px;
+        }
+
+        .footer-highlight {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .footer-highlight h3 {
+            font-size: 1.1rem;
+            color: var(--deep-rose);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .footer-highlight p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Confetes de Coração */
+        .heart-confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1100;
+            animation: fallConfetti linear forwards;
+        }
+
+        @keyframes fallConfetti {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Keyframes */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .couple-names-header {
+                font-size: 3rem;
+            }
+
+            .pulsing-heart {
+                font-size: 2.2rem;
+            }
+
+            .counter-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .counter-number {
+                font-size: 1.5rem;
+            }
+
+            .modal-card {
+                padding: 25px;
+            }
+
+            .letter-header {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .counter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .envelope-btn {
+                padding: 15px 28px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tela de Entrada (Entry Overlay) estilo referência -->
+    <div id="entry-overlay" onclick="enterSite()">
+        <span class="entry-text">click to enter...</span>
+        <!-- Estrelas flutuantes de fundo na tela escura -->
+        <div class="star-particle" style="top: 20%; left: 15%; animation-delay: 0s;">❄</div>
+        <div class="star-particle" style="top: 10%; left: 50%; animation-delay: 1s;">❄</div>
+        <div class="star-particle" style="top: 25%; left: 70%; animation-delay: 2.2s;">❄</div>
+        <div class="star-particle" style="top: 45%; left: 35%; animation-delay: 0.5s;">❄</div>
+        <div class="star-particle" style="top: 48%; left: 75%; animation-delay: 1.8s;">❄</div>
+        <div class="star-particle" style="top: 60%; left: 71%; animation-delay: 3s;">❄</div>
+        <div class="star-particle" style="top: 65%; left: 28%; animation-delay: 1.2s;">❄</div>
+        <div class="star-particle" style="top: 65%; left: 47%; animation-delay: 2.7s;">❄</div>
+        <div class="star-particle" style="top: 85%; left: 10%; animation-delay: 0.8s;">❄</div>
+        <div class="star-particle" style="top: 85%; left: 88%; animation-delay: 1.5s;">❄</div>
+        <div class="star-particle" style="top: 55%; left: 93%; animation-delay: 2.5s;">❄</div>
+    </div>
+
+    <!-- Container de Corações Animados de Fundo -->
+    <div id="hearts-container"></div>
+
+    <div class="container">
+        
+        <!-- Player de Música Estilizado -->
+        <div class="music-player">
+            <div class="music-info">
+                <button class="music-icon-btn" id="play-music-btn" title="Tocar Músicas">
+                    <i class="fa-solid fa-play" id="music-btn-icon"></i>
+                </button>
+                <div class="music-text">
+                    <h4>Nossa Trilha Sonora</h4>
+                    <p id="music-status-text">Clique no play para ouvir a melodia ❤️</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-music" style="color: var(--soft-red); font-size: 1.2rem;"></i>
+        </div>
+
+        <!-- Cabeçalho Principal -->
+        <header>
+            <h1 class="couple-names-header">
+                Para o amor da minha vida 
+                <span class="pulsing-heart"><i class="fa-solid fa-heart"></i></span> 
+                Izabelly Cavalcante
+            </h1>
+            <p class="subtitle">Criado para celebrar cada instante do nosso lindo amor ✨</p>
+        </header>
+
+        <!-- Contador Dinâmico de Namoro -->
+        <section class="glass-card counter-section">
+            <h2 class="counter-title">
+                <i class="fa-solid fa-hourglass-half" style="color: var(--soft-red);"></i> 
+                Tempo Juntos em Nosso Namoro:
+            </h2>
+            <div class="counter-grid">
+                <div class="counter-box">
+                    <span class="counter-number" id="years">0</span>
+                    <span class="counter-label">Anos</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="months">0</span>
+                    <span class="counter-label">Meses</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="days">0</span>
+                    <span class="counter-label">Dias</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="hours">0</span>
+                    <span class="counter-label">Horas</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="minutes">0</span>
+                    <span class="counter-label">Minutos</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="seconds">0</span>
+                    <span class="counter-label">Segundos</span>
+                </div>
+            </div>
+            <p class="start-date">Começamos a namorar no inesquecível dia: <strong>01/01/2026</strong> 💖</p>
+        </section>
+
+        <!-- Seção: Nossa História & Por Que Eu Te Amo -->
+        <h2 class="section-heading">Nossa História & Por Que Eu Te Amo</h2>
+        <div class="story-grid">
+            <div class="story-card">
+                <div class="story-icon"><i class="fa-solid fa-sparkles"></i></div>
+                <h3>Como Amei Te Conhecer</h3>
+                <p>O dia em que você entrou na minha vida tudo mudou para melhor. Seu sorriso, seu jeito doce e o brilho nos seus olhos ganharam meu coração instantaneamente.</p>
+            </div>
+
+            <div class="story-card">
+                <div class="story-icon"><i class="fa-solid fa-face-smile-beam"></i></div>
+                <h3>Seu Sorriso & Cumplicidade</h3>
+                <p>Amo o som da sua risada e como a gente se entende apenas com um olhar. Estar com você transforma qualquer momento comum na melhor memória do meu dia.</p>
+            </div>
+
+            <div class="story-card">
+                <div class="story-icon"><i class="fa-solid fa-heart-circle-check"></i></div>
+                <h3>Amo Nosso Relacionamento</h3>
+                <p>Amo o respeito, o carinho e o companheirismo que construímos diariamente. Saber que posso contar com você me traz a paz mais verdadeira do mundo.</p>
+            </div>
+
+            <div class="story-card">
+                <div class="story-icon"><i class="fa-solid fa-infinity"></i></div>
+                <h3>Para Sempre com Você</h3>
+                <p>Quero continuar descobrindo o mundo ao seu lado, realizando todos os nossos sonhos e celebrando a sorte que é ter a Izabelly no meu caminho.</p>
+            </div>
+        </div>
+
+        <!-- Seção: Galeria de Fotos / Momentos Importantes -->
+        <section class="glass-card">
+            <h2 class="section-heading" style="margin-bottom: 10px;">Nossos Momentos Especiais</h2>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+                Clique em qualquer polaroid para ver em tamanho maior ✨
+            </p>
+            <div class="polaroid-grid">
+                <div class="polaroid-card" onclick="openPhotoModal('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80', 'Onde Tudo Começou ❤️')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" alt="Primeiro Encontro" onerror="this.src='https://placehold.co/400x400/ffb3c1/590d22?text=Onde+Tudo+Começou'">
+                    </div>
+                    <div class="polaroid-caption">Onde Tudo Começou ❤️</div>
+                </div>
+
+                <div class="polaroid-card" onclick="openPhotoModal('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80', 'Seu Sorriso Lindo ✨')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Seu Sorriso Lindo" onerror="this.src='https://placehold.co/400x400/ffb3c1/590d22?text=Seu+Sorriso+Lindo'">
+                    </div>
+                    <div class="polaroid-caption">Seu Sorriso Lindo ✨</div>
+                </div>
+
+                <div class="polaroid-card" onclick="openPhotoModal('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80', 'Nossos Passeios Juntos 💕')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" alt="Nossos Passeios" onerror="this.src='https://placehold.co/400x400/ffb3c1/590d22?text=Nossos+Passeios'">
+                    </div>
+                    <div class="polaroid-caption">Nossos Passeios Juntos 💕</div>
+                </div>
+
+                <div class="polaroid-card" onclick="openPhotoModal('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80', 'Início do Nosso Namoro 💍')">
+                    <div class="polaroid-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Dia do Namoro" onerror="this.src='https://placehold.co/400x400/ffb3c1/590d22?text=Dia+01/01/2026'">
+                    </div>
+                    <div class="polaroid-caption">01/01/2026 Para Sempre 💍</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção da Carta de Amor Surpresa -->
+        <section class="glass-card letter-section">
+            <h2 class="section-heading" style="font-size: 3rem; margin-bottom: 15px;">Uma Mensagem Direta do Meu Coração</h2>
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Tenho um segredo gravado aqui dentro para você...</p>
+            <button class="envelope-btn" id="open-letter-btn">
+                <i class="fa-solid fa-envelope-open-text"></i> Clique para abrir meu coração
+            </button>
+        </section>
+
+        <!-- Rodapé -->
+        <footer>
+            <div class="footer-highlight">
+                <h3>"Fiz com carinho para demonstrar todo meu amor por você"</h3>
+                <p>Com todo amor do mundo ❤️</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Modal da Carta de Amor Surpresa -->
+    <div class="modal-overlay" id="letter-modal">
+        <div class="modal-card">
+            <button class="close-modal-btn" onclick="closeLetterModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="letter-header">Minha Izabelly,</h2>
+            <div class="letter-body">
+                <p>Desde o dia em que te conheci, percebi que você não era apenas mais alguém. Seu olhar, sua ternura e o carinho com que você me trata fizeram com que eu me apaixonasse cada dia mais.</p>
+                <p>Iniciamos o nosso namoro no dia <strong>01/01/2026</strong>, e posso dizer com toda certeza que essa foi uma das melhores e mais importantes decisões de toda a minha vida. Amo a nossa sintonia, nossas conversas e o abraço que me dá a sensação exata de estar no meu lar.</p>
+                <p>Amo o nosso relacionamento e tudo aquilo que sonhamos construir juntos. Obrigado por ser minha companheira, minha melhor amiga e o amor da minha vida.</p>
+                <p>Prometo te fazer sorrir, te apoiar em todos os momentos e te amar com toda a intensidade do meu coração!</p>
+            </div>
+            <div class="letter-signature">
+                Te amo infinitamente ❤️
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Exibir Imagem Ampliada -->
+    <div class="modal-overlay" id="photo-modal">
+        <div class="modal-card" style="text-align: center; max-width: 550px;">
+            <button class="close-modal-btn" onclick="closePhotoModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img src="" id="expanded-photo" class="photo-modal-img" alt="Foto Ampliada">
+            <h3 id="expanded-photo-caption" class="polaroid-caption" style="margin-top: 15px;"></h3>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        /* ==================== 0. AÇÃO AO CLICAR NA TELA DE ENTRADA ==================== */
+        function enterSite() {
+            const overlay = document.getElementById('entry-overlay');
+            if (overlay) {
+                overlay.classList.add('fade-out');
+            }
+            // Inicia a música automaticamente ao clicar para entrar
+            toggleMusic(true);
+            // Confetes festivos de entrada
+            triggerHeartConfetti();
+        }
+
+        /* ==================== 1. GERADOR DE CORAÇÕES FLUTUANTES NO FUNDO ==================== */
+        function createFloatingHeart() {
+            const container = document.getElementById('hearts-container');
+            if (!container) return;
+
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            const heartIcons = ['❤️', '💖', '💕', '💗', '💓', '🌸', '✨'];
+            heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 14) + 'px';
+            
+            const duration = Math.random() * 5 + 4;
+            heart.style.animationDuration = duration + 's';
+
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createFloatingHeart, 300);
+
+        /* ==================== 2. CONTADOR DE TEMPO DE NAMORO EM TEMPO REAL ==================== */
+        // Data de início do namoro: 01 de Janeiro de 2026 às 00:00:00
+        const startDate = new Date(2026, 0, 1, 0, 0, 0);
+
+        function updateTimer() {
+            const now = new Date();
+
+            if (now < startDate) {
+                document.getElementById('years').innerText = '0';
+                document.getElementById('months').innerText = '0';
+                document.getElementById('days').innerText = '0';
+                document.getElementById('hours').innerText = '0';
+                document.getElementById('minutes').innerText = '0';
+                document.getElementById('seconds').innerText = '0';
+                return;
+            }
+
+            let years = now.getFullYear() - startDate.getFullYear();
+            let months = now.getMonth() - startDate.getMonth();
+            let days = now.getDate() - startDate.getDate();
+            let hours = now.getHours() - startDate.getHours();
+            let minutes = now.getMinutes() - startDate.getMinutes();
+            let seconds = now.getSeconds() - startDate.getSeconds();
+
+            if (seconds < 0) {
+                seconds += 60;
+                minutes--;
+            }
+            if (minutes < 0) {
+                minutes += 60;
+                hours--;
+            }
+            if (hours < 0) {
+                hours += 24;
+                days--;
+            }
+            if (days < 0) {
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+                months--;
+            }
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
+
+            document.getElementById('years').innerText = years;
+            document.getElementById('months').innerText = months;
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        /* ==================== 3. CHUVA DE CONFETES DE CORAÇÃO ==================== */
+        function triggerHeartConfetti() {
+            const confettiColors = ['❤️', '💖', '💕', '💗', '✨', '🌹'];
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('heart-confetti');
+                    confetti.innerText = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.fontSize = (Math.random() * 25 + 18) + 'px';
+                    
+                    const duration = Math.random() * 3 + 2.5;
+                    confetti.style.animationDuration = duration + 's';
+                    
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, duration * 1000);
+                }, i * 60);
+            }
+        }
+
+        /* ==================== 4. MODAL DA CARTA DE AMOR ==================== */
+        const letterBtn = document.getElementById('open-letter-btn');
+        const letterModal = document.getElementById('letter-modal');
+
+        letterBtn.addEventListener('click', () => {
+            letterModal.classList.add('active');
+            triggerHeartConfetti();
+        });
+
+        function closeLetterModal() {
+            letterModal.classList.remove('active');
+        }
+
+        letterModal.addEventListener('click', (e) => {
+            if (e.target === letterModal) {
+                closeLetterModal();
+            }
+        });
+
+        /* ==================== 5. MODAL DE GALERIA DE FOTOS ==================== */
+        const photoModal = document.getElementById('photo-modal');
+        const expandedPhoto = document.getElementById('expanded-photo');
+        const photoCaption = document.getElementById('expanded-photo-caption');
+
+        function openPhotoModal(imgSrc, caption) {
+            expandedPhoto.src = imgSrc;
+            photoCaption.innerText = caption;
+            photoModal.classList.add('active');
+        }
+
+        function closePhotoModal() {
+            photoModal.classList.remove('active');
+        }
+
+        photoModal.addEventListener('click', (e) => {
+            if (e.target === photoModal) {
+                closePhotoModal();
+            }
+        });
+
+        /* ==================== 6. PLAYER DE MÚSICA DE FUNDO SINTETIZADO ==================== */
+        let audioCtx = null;
+        let isPlaying = false;
+        let melodyInterval = null;
+
+        const musicBtn = document.getElementById('play-music-btn');
+        const musicIcon = document.getElementById('music-btn-icon');
+        const musicStatus = document.getElementById('music-status-text');
+
+        // Melodia suave e romântica gerada por frequências de áudio
+        const notes = [
+            261.63, 329.63, 392.00, 523.25, // C4, E4, G4, C5
+            349.23, 440.00, 523.25, // F4, A4, C5
+            392.00, 493.88, 587.33, // G4, B4, D5
+            220.00, 261.63, 329.63  // A3, C4, E4
+        ];
+
+        function playRomanticNote(freq, time) {
+            if (!audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, time);
+
+                gain.gain.setValueAtTime(0, time);
+                gain.gain.linearRampToValueAtTime(0.08, time + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.001, time + 1.8);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(time);
+                osc.stop(time + 1.8);
+            } catch(e) {}
+        }
+
+        function startMelody() {
+            let noteIdx = 0;
+            melodyInterval = setInterval(() => {
+                if (!isPlaying || !audioCtx) return;
+                const now = audioCtx.currentTime;
+                playRomanticNote(notes[noteIdx], now);
+                playRomanticNote(notes[(noteIdx + 2) % notes.length] / 2, now); // Nota grave harmoniosa
+                noteIdx = (noteIdx + 1) % notes.length;
+            }, 600);
+        }
+
+        function toggleMusic(forcePlay = false) {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            if (!isPlaying || forcePlay) {
+                isPlaying = true;
+                musicBtn.classList.add('playing');
+                musicIcon.className = 'fa-solid fa-pause';
+                musicStatus.innerText = 'Tocando melodia de amor 💕';
+                if (!melodyInterval) startMelody();
+            } else {
+                isPlaying = false;
+                musicBtn.classList.remove('playing');
+                musicIcon.className = 'fa-solid fa-play';
+                musicStatus.innerText = 'Clique no play para ouvir a melodia ❤️';
+                if (melodyInterval) {
+                    clearInterval(melodyInterval);
+                    melodyInterval = null;
+                }
+            }
+        }
+
+        musicBtn.addEventListener('click', () => toggleMusic());
+    </script>
+</body>
+</html>

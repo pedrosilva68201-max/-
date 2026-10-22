@@ -1,0 +1,550 @@
+/* Resets e Fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b0b0d;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 60px;
+}
+
+/* Header */
+.header {
+    position: relative;
+    text-align: center;
+    padding: 50px 20px 30px;
+    background: linear-gradient(180deg, #141419 0%, #0b0b0d 100%);
+    border-bottom: 1px solid #1a1a24;
+}
+
+/* Botão de Entrar / Cadastrar no Topo */
+.top-auth-container {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.btn-auth {
+    display: inline-block;
+    padding: 8px 18px;
+    background-color: transparent;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-auth:hover {
+    background-color: #d4af37;
+    color: #000000;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: #d4af37;
+    font-weight: 600;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: #8a8a9e;
+    margin-top: 8px;
+    font-weight: 300;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Seletor de Cidades */
+.city-selector-wrapper {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.city-selector {
+    width: 100%;
+    max-width: 360px;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    background-color: #121217;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.city-selector:hover, .city-selector:focus {
+    background-color: #1a1a22;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+}
+
+.city-selector option, .city-selector optgroup {
+    background-color: #121217;
+    color: #ffffff;
+}
+
+/* Filtros por Categoria */
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: #121217;
+    border: 1px solid #22222e;
+    color: #8a8a9e;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    border-color: #d4af37;
+    color: #d4af37;
+    background: #1a1a24;
+}
+
+/* Container Principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.divider {
+    width: 60px;
+    height: 2px;
+    background-color: #d4af37;
+    margin: 15px auto 40px auto;
+}
+
+/* Grid de Cards */
+.grid-models {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Cards das Modelos */
+.model-card {
+    background: #121217;
+    border: 1px solid #22222e;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.model-card:hover {
+    transform: translateY(-8px);
+    border-color: #d4af37;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+}
+
+/* Fotos */
+.avatar-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 110%;
+    overflow: hidden;
+}
+
+.avatar-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.model-card:hover .avatar-wrapper img {
+    transform: scale(1.05);
+}
+
+.badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* Infos da Modelo */
+.model-info {
+    padding: 20px 15px;
+}
+
+.model-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.location {
+    font-size: 0.8rem;
+    color: #717182;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 0.8rem;
+    color: #a0a0b2;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #d4af37;
+    margin-bottom: 18px;
+}
+
+.price span {
+    font-size: 0.7rem;
+    color: #8a8a9e;
+    font-weight: 300;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Botão Agendar */
+.btn-booking {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-booking:hover {
+    background-color: #d4af37;
+    color: #000000;
+    font-weight: 500;
+}
+
+/* Seção: Como Funciona */
+.how-it-works {
+    margin-top: 70px;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.step-card {
+    background: #121217;
+    border: 1px solid #1a1a24;
+    padding: 25px 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.step-num {
+    width: 40px;
+    height: 40px;
+    background-color: #d4af37;
+    color: #000000;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+}
+
+.step-card h4 {
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.step-card p {
+    font-size: 0.8rem;
+    color: #8a8a9e;
+    line-height: 1.4;
+}
+
+/* Seção: FAQ */
+.faq-section {
+    margin-top: 70px;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: #121217;
+    border: 1px solid #1a1a24;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.faq-question {
+    color: #d4af37;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.faq-answer {
+    color: #a0a0b2;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.8rem;
+    color: #555566;
+    border-top: 1px solid #141419;
+    margin-top: 60px;
+}
+
+.footer-links {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #8a8a9e;
+    text-decoration: none;
+    margin: 0 6px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #d4af37;
+}
+
+/* Botão de Suporte Flutuante */
+.btn-support-floating {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #121217;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    padding: 12px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.btn-support-floating:hover {
+    background-color: #d4af37;
+    color: #000000;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    transform: translateY(-3px);
+}
+
+/* Modal Pop-up (Login, Cadastro e +18) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-card {
+    background-color: #121217;
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    padding: 35px 30px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #8a8a9e;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-close:hover {
+    color: #d4af37;
+}
+
+.modal-title {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
+.modal-subtitle {
+    font-size: 0.85rem;
+    color: #8a8a9e;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.login-form .input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.login-form label {
+    display: block;
+    font-size: 0.8rem;
+    color: #d4af37;
+    margin-bottom: 6px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #0b0b0d;
+    border: 1px solid #22222e;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #d4af37;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #d4af37;
+    color: #000000;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #e5c158;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 12px;
+    background-color: transparent;
+    color: #8a8a9e;
+    border: 1px solid #22222e;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #1a1a24;
+    color: #ffffff;
+}
+
+.modal-footer-text {
+    font-size: 0.8rem;
+    color: #8a8a9e;
+    margin-top: 20px;
+}
+
+.modal-footer-text a {
+    color: #d4af37;
+    text-decoration: none;
+}
+
+.modal-footer-text a:hover {
+    text-decoration: underline;
+}
+
+.age-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
